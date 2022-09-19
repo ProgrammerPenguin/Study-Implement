@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float MaxZ;
 
+    public List<Vector3> list = new List<Vector3>();
+    public List<GameObject> list2 = new List<GameObject>();
+
     void Start()
     {
         SpawnEnemy();
@@ -28,8 +31,13 @@ public class GameManager : MonoBehaviour
         Quaternion rotation = new Quaternion(0f, 0f, 0f, 0f);
         for (int i = 0; i < NumberOfEnemy; i++)
         {
-            position.Set(Random.Range(MinX, MaxX), 0f, Random.Range(MinZ, MaxZ));
-            Instantiate(EnemyPrefab, position, rotation);
+            
+            position.Set(Random.Range(MinX, MaxX), 1f, Random.Range(MinZ, MaxZ));
+            list.Add(position);
+            Debug.Log($"{list[i]}");
+            list2.Add(Instantiate(EnemyPrefab, position, rotation));
         }
     }
+
+
 }
